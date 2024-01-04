@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <string>
 #include <iostream>
 
 struct Point {
@@ -15,8 +16,25 @@ struct Point {
 
 class Curve {
 public:
-	virtual Point calculatePoint(double t) const;
-	virtual Point calculateDerivative(double t) const;
+	Curve() {};
+	virtual Point calculatePoint(double t) const {
+		return {0, 0, 0};
+	};
+	virtual Point calculateDerivative(double t) const {
+		return {0, 0, 0};
+	};
+	
+	virtual void getCurve() {
+		std::cout << "Curve";
+	}
+	
+	virtual double getRadius() const {
+		return 0.0;
+	};
+	
+	virtual std::string getName() {
+		return "Curve";
+	}
 };
 
 class Circle: public Curve {
@@ -26,15 +44,38 @@ public:
 	Circle(double r) : radius(r) {};
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
+	
+	void getCurve() {
+		std::cout << "Circle {radius = " + std::to_string(radius) + "}\n";
+	}
+	
+	double getRadius() const {
+		return radius;
+	}
+	std::string getName() {
+		return "Circle";
+	}
 };
 
-class Eclipse: public Curve {
+class Ellipse: public Curve {
 private:
 	double radius1, radius2;
 public:
-	Eclipse(double r1, double r2): radius1(r1), radius2(r2) {};
+	Ellipse(double r1, double r2): radius1(r1), radius2(r2) {};
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
+	
+	void getCurve() {
+		std::cout << "Ellipse {r1 = " + std::to_string(radius1) +
+		", r2 =" + std::to_string(radius2) +"}\n";
+	}
+	
+	double getRadius() const {
+		return radius1;
+	}
+	std::string getName() {
+		return "Ellipse";
+	}
 };
 
 class Helix: public Curve {
@@ -44,4 +85,16 @@ public:
 	Helix(double r, double s): radius(r), step(s) {};
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
+	
+	void getCurve() {
+		std::cout << "Helix {radius = " + std::to_string(radius) +
+		"step = " + std::to_string(step) + "}\n";
+	}
+	
+	double getRadius() const {
+		return radius;
+	}
+	std::string getName() {
+		return "Helix";
+	}
 };

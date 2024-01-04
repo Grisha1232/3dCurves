@@ -22,14 +22,14 @@ Point Circle::calculateDerivative(double t) const {
 // x = r1 * cos(t)
 // y = r2 * sin(t)
 // z = 0 (because our eclipse is planar)
-Point Eclipse::calculatePoint(double t) const {
+Point Ellipse::calculatePoint(double t) const {
 	return {radius1 * std::cos(t), radius2 * std::sin(t), 0.0};
 }
 // derivative
 // x = -r1 * sin(t)
 // y = r2 * cos(t)
 // z = 0
-Point Eclipse::calculateDerivative(double t) const {
+Point Ellipse::calculateDerivative(double t) const {
 	return {-radius1 * std::sin(t), radius2 * std::cos(t), 0.0};
 
 }
