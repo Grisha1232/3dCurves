@@ -1,7 +1,7 @@
 # 3d curves
 
 ## Library
-> Исходный код библиотеки для кривых находится в src/lib
+> Исходный код библиотеки для кривых находится в [src/lib](https://github.com/Grisha1232/3dCurves/tree/main/src/lib)
 
 ## Programm
 Для сборки и запуска:
