@@ -24,7 +24,7 @@ public:
 		return {0, 0, 0};
 	};
 	
-	virtual void getCurve() {
+	virtual void getCurve() const {
 		std::cout << "Curve";
 	}
 	
@@ -32,7 +32,7 @@ public:
 		return 0.0;
 	};
 	
-	virtual std::string getName() {
+	virtual std::string getName() const {
 		return "Curve";
 	}
 };
@@ -45,14 +45,14 @@ public:
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
 	
-	void getCurve() {
+	void getCurve() const {
 		std::cout << "Circle {radius = " + std::to_string(radius) + "}\n";
 	}
 	
 	double getRadius() const {
 		return radius;
 	}
-	std::string getName() {
+	std::string getName() const {
 		return "Circle";
 	}
 };
@@ -65,7 +65,7 @@ public:
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
 	
-	void getCurve() {
+	void getCurve() const {
 		std::cout << "Ellipse {r1 = " + std::to_string(radius1) +
 		", r2 =" + std::to_string(radius2) +"}\n";
 	}
@@ -73,7 +73,7 @@ public:
 	double getRadius() const {
 		return radius1;
 	}
-	std::string getName() {
+	std::string getName() const {
 		return "Ellipse";
 	}
 };
@@ -86,7 +86,7 @@ public:
 	Point calculatePoint(double t) const;
 	Point calculateDerivative(double t) const;
 	
-	void getCurve() {
+	void getCurve() const {
 		std::cout << "Helix {radius = " + std::to_string(radius) +
 		"step = " + std::to_string(step) + "}\n";
 	}
@@ -94,7 +94,7 @@ public:
 	double getRadius() const {
 		return radius;
 	}
-	std::string getName() {
+	std::string getName() const {
 		return "Helix";
 	}
 };
