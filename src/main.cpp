@@ -5,6 +5,7 @@
 #include <random>
 #include <vector>
 #include <cmath>
+#include <sstream>
 
 struct Random {
 	Random() = delete;
@@ -42,15 +43,33 @@ std::shared_ptr<Curve> getCurve() {
 
 
 int main(int argc, char *argv[]) {
+	
 	int numberOfCurves = 5;
+	if (argc == 2) {
+		std::istringstream ss(argv[1]);
+		if (!(ss >> numberOfCurves)) {
+			std::cerr << "Invalid argument: " << argv[1] << "\n";
+			std::cerr << "Please provide with integer number or without arguments\n";
+			return -1;
+		}
+	}
+	if (numberOfCurves > 100) {
+		numberOfCurves = 100;
+	}
+	std::cout << numberOfCurves << "\n";
 	double t = M_PI_4;
 	
 	std::vector<std::shared_ptr<Curve>> curves;
 	std::vector<std::shared_ptr<Circle>> circles;
 	
 	for (int i = 0; i < numberOfCurves; i++) {
-		curves.push_back(getCurve());
+		auto curve = getCurve();
+		curves.push_back(curve);
 		curves.back()->getCurve();
+		
+		if (curve->getName() == "Circle") {
+			circles.push_back(std::dynamic_pointer_cast<Circle>(curve));
+		}
 	}
 	std::cout << "\n\nAt point t = Pi/4\n";
 	for (const auto &curve : curves) {
@@ -60,17 +79,8 @@ int main(int argc, char *argv[]) {
 		std::cout << "\n";
 	}
 	
-	for (const auto &curve : curves) {
-		if (curve->getName() == "Circle") {
-			std::cout << curve << "\n";
-			curve->getCurve();
-			circles.push_back(std::dynamic_pointer_cast<Circle>(curve));
-		}
-	}
-	
 	std::cout << "\nvector of circles is size of " << circles.size() << "\n";
 	for (const auto &circle : circles) {
-		std::cout << circle << "\n";
 		circle->getCurve();
 	}
 	
